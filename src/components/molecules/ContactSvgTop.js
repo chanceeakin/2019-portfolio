@@ -4,7 +4,7 @@ import { waveAnimation } from '../../styles/animations';
 import { Divider, WaveWrapper, InnerWave } from '../atoms/styled';
 
 const Contact = () => (
-  <Divider fill="#23262b" speed={0.2} offset={4}>
+  <Divider fill="#23262b" speed={0.2} offset={3}>
     <WaveWrapper>
       <InnerWave>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 338.05" preserveAspectRatio="none">

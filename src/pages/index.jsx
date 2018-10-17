@@ -22,7 +22,7 @@ class Index extends React.Component {
         <SEO />
         <Nav scroll={this.scroll} />
         {/* eslint-disable-next-line */}
-        <Parallax pages={5} ref={ref => (this.parallaxRef = ref)}>
+        <Parallax pages={4} ref={ref => (this.parallaxRef = ref)}>
           <Home />
           <Projects />
           <About />

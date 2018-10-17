@@ -36,9 +36,9 @@ const NavBar = ({ scroll }) => (
     </Title>
     <NavLinks>
       <LinkDiv>
-        <LinkEl onClick={() => scroll(1.6)}>Projects</LinkEl>
-        <LinkEl onClick={() => scroll(3.1)}>About</LinkEl>
-        <LinkEl onClick={() => scroll(4.5)}>Contact</LinkEl>
+        <LinkEl onClick={() => scroll(1.1)}>Projects</LinkEl>
+        <LinkEl onClick={() => scroll(2.2)}>About</LinkEl>
+        <LinkEl onClick={() => scroll(3.3)}>Contact</LinkEl>
       </LinkDiv>
     </NavLinks>
   </Wrapper>

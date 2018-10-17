@@ -25,7 +25,7 @@ export const Footer = styled.footer`
 `;
 
 const Contact = () => (
-  <Content speed={0.4} offset={4}>
+  <Content speed={0.4} offset={3}>
     <Inner>
       <Title>Get in touch</Title>
       <ContactText>

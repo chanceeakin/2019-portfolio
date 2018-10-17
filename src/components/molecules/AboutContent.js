@@ -2,12 +2,7 @@
 import React from 'react';
 import styled from 'react-emotion';
 import avatar from '../../images/avatar.jpg';
-import { Content, Inner } from '../atoms/styled';
-
-export const Title = styled.h1`
-  ${tw('text-4xl lg:text-4xl font-serif text-black mb-8 tracking-wide relative inline-block')};
-  }
-`;
+import { Content, Inner, Title } from '../atoms/styled';
 
 export const AboutHero = styled.div`
   ${tw('flex flex-col lg:flex-row items-center mt-8')};
@@ -26,7 +21,7 @@ export const AboutDesc = styled.p`
 `;
 
 const About = () => (
-  <Content speed={0.4} offset={3}>
+  <Content speed={0.4} offset={2}>
     <Inner>
       <Title>About</Title>
       <AboutHero>

@@ -7,7 +7,7 @@ import { UpDown, UpDownWide } from '../../styles/animations';
 import { Divider } from '../atoms/styled';
 
 const Contact = () => (
-  <Divider speed={0.1} offset={4}>
+  <Divider speed={0.1} offset={3}>
     <UpDown>
       <SVG icon="hexa" className={hidden} width={8} stroke={colors['grey-darkest']} left="70%" top="20%" />
       <SVG icon="hexa" width={8} stroke={colors['blue-darkest']} left="25%" top="5%" />

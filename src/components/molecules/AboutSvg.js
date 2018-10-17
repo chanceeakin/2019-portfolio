@@ -8,8 +8,7 @@ import { Divider } from '../atoms/styled';
 
 const About = () => (
   <React.Fragment>
-    <Divider bg="#f3f7f9" clipPath="polygon(0 16%, 100% 4%, 100% 82%, 0 94%)" speed={0.2} offset={3} />
-    <Divider speed={0.1} offset={3}>
+    <Divider speed={0.1} offset={2}>
       <UpDown>
         <SVG icon="hexa" className={hidden} width={6} stroke={colors.grey} left="50%" top="75%" />
         <SVG icon="hexa" className={hidden} width={8} stroke={colors['grey-darkest']} left="70%" top="20%" />

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Parallax } from 'react-spring';
+import { Parallax } from 'react-spring/dist/addons';
 import 'typeface-cantata-one';
 import 'typeface-open-sans';
 

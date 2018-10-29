@@ -1,6 +1,6 @@
 /* global tw */
 import styled from 'react-emotion';
-import { ParallaxLayer } from 'react-spring';
+import { ParallaxLayer } from 'react-spring/dist/addons';
 import { rotate } from '../../styles/animations';
 
 export const Divider = styled(ParallaxLayer)`

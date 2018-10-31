@@ -3,18 +3,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { GradientSteelPurple, GradientPinkRed } from '@vx/gradient';
 import { GlyphDot } from '@vx/glyph';
-import { Spring } from 'react-spring';
 import { geoMercator } from 'd3-geo';
 import { Mercator } from '@vx/geo';
 import * as topojson from 'topojson-client';
 import topology from '../constants/world.json';
+import Modal from '../components/atoms/modal.js';
 
 export default class MapComp extends React.Component {
   static propTypes = {
     width: PropTypes.number,
     height: PropTypes.number,
     scale: PropTypes.number,
-    events: PropTypes.any,
   };
 
   static defaultProps = {
@@ -56,6 +55,23 @@ export default class MapComp extends React.Component {
       { name: 'Paris', coordinates: [2.3522, 48.8566], population: 10858000 },
       { name: 'Lima', coordinates: [-77.0428, -12.0464], population: 10750000 },
     ],
+    isOpen: false,
+    selectedCity: {},
+  };
+
+  toggleOpen = city => {
+    if (city) {
+      const { isOpen } = this.state;
+      this.setState({
+        isOpen: !isOpen,
+        selectedCity: city,
+      });
+      return;
+    }
+    this.setState({
+      isOpen: !isOpen,
+      selectedCity: {},
+    });
   };
 
   projection = () => {
@@ -66,8 +82,8 @@ export default class MapComp extends React.Component {
   };
 
   render() {
-    const { width, height, events = false } = this.props;
-    const { cities } = this.state;
+    const { width, height } = this.props;
+    const { cities, isOpen, selectedCity } = this.state;
 
     if (width < 10) return <div />;
     const world = topojson.feature(topology, topology.objects.countries);
@@ -75,43 +91,42 @@ export default class MapComp extends React.Component {
     const translate = [width / 2, height / 2];
 
     return (
-      <svg width={width} height={height}>
-        <GradientSteelPurple id="geo_mercator_radial" />
-        <GradientPinkRed id="cities" />
-        <Spring from={{ opacity: 0 }} to={{ opacity: 1 }}>
-          {props => (
-            <React.Fragment>
-              <Mercator
-                style={props}
-                data={world.features}
-                scale={scale}
-                translate={translate}
-                fill="url(#geo_mercator_radial)"
-                projectionFunc={this.projection}
-                // onClick={data => event => {
-                //   alert(`Clicked: ${data.properties.name} (${data.id})`);
-                // }}
-              />
-              <g className="markers" style={props}>
-                {cities.map(city => (
-                  <GlyphDot
-                    key={city.coordinates[0] * city.coordinates[1]}
-                    cx={this.projection()(city.coordinates)[0]}
-                    cy={this.projection()(city.coordinates)[1]}
-                    r={city.population / 3000000}
-                    fill="url(#cities)"
-                    className="marker"
-                    style={{
-                      zIndex: 1000,
-                      cursor: 'pointer',
-                    }}
-                  />
-                ))}
-              </g>
-            </React.Fragment>
-          )}
-        </Spring>
-      </svg>
+      <React.Fragment>
+        <svg width={width} height={height}>
+          <GradientSteelPurple id="geo_mercator_radial" />
+          <GradientPinkRed id="cities" />
+          <React.Fragment>
+            <Mercator
+              data={world.features}
+              scale={scale}
+              translate={translate}
+              fill="url(#geo_mercator_radial)"
+              projectionFunc={this.projection}
+              // onClick={data => event => {
+              //   alert(`Clicked: ${data.properties.name} (${data.id})`);
+              // }}
+            />
+            <g className="markers">
+              {cities.map(city => (
+                <GlyphDot
+                  key={city.coordinates[0] * city.coordinates[1]}
+                  cx={this.projection()(city.coordinates)[0]}
+                  cy={this.projection()(city.coordinates)[1]}
+                  r={city.population / 3000000}
+                  fill="url(#cities)"
+                  className="marker"
+                  style={{
+                    zIndex: 1000,
+                    cursor: 'pointer',
+                  }}
+                  onClick={() => this.toggleOpen(city)}
+                />
+              ))}
+            </g>
+          </React.Fragment>
+        </svg>
+        <Modal isOpen={isOpen} toggleOpen={this.toggleOpen} selectedCity={selectedCity} />
+      </React.Fragment>
     );
   }
 }

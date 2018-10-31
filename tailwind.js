@@ -130,6 +130,14 @@ const colors = {
   'pink-light': '#fa7ea8',
   'pink-lighter': '#ffbbca',
   'pink-lightest': '#ffebef',
+
+  'smoke-darkest': '#24242480',
+  'smoke-darker': '#47474780',
+  'smoke-dark': '#6B6B6B80',
+  smoke: '#77777780',
+  'smoke-light': '#A0A0A080',
+  'smoke-lighter': '#C9C9C980',
+  'smoke-lightest': '#F1F1F180',
 };
 
 module.exports = {

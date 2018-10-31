@@ -31,11 +31,14 @@
     "no-console": 0,
     "linebreak-style": 0,
     "no-use-before-define": 0,
+    "no-unused-expressions": 0,
+    "react/no-children-prop": 0, 
     "import/no-extraneous-dependencies": 0,
     "react/no-danger": 0,
     "import/prefer-default-export": 0,
     "import": 0,
     "func-names": 0,
+    "no-return-assign": 0,
     "space-before-function-paren": 0,
     "import/extensions": 0,
     "no-underscore-dangle": 0,
@@ -45,6 +48,8 @@
     "react/forbid-prop-types": 0,
     "react/no-unescaped-entities": 0,
     "jsx-a11y/accessible-emoji": 0,
+    "react/destructuring-assignment": 0,
+    "no-plusplus": 0,
     "react/jsx-filename-extension": [
       1,
       {

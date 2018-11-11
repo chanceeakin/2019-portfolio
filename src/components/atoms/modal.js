@@ -1,18 +1,15 @@
 /* global tw */
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
-import { Transition, animated } from 'react-spring';
+import { Transition } from 'react-spring';
 import styled from 'react-emotion';
+import ModalContent from './modalContent';
 
 const Overlay = styled.div`
   ${tw('fixed pin z-100 overflow-auto bg-smoke-darker flex')};
 `;
 
-const ModalDiv = styled.div`
-  ${tw('relative p-8 bg-white w-full max-w-md m-auto flex-col flex rounded')};
-`;
-
-const Modal = ({ isOpen, selectedCity, toggleOpen }) => (
+const Modal = ({ isOpen, selectedCity, toggleClose }) => (
   <Transition
     items={isOpen}
     from={{
@@ -25,16 +22,14 @@ const Modal = ({ isOpen, selectedCity, toggleOpen }) => (
       opacity: 0,
     }}
   >
-    {show =>
-      show &&
+    {isOpen =>
+      isOpen &&
       (props => (
-        <animated.div style={props}>
+        <div style={props}>
           <Overlay>
-            <ModalDiv onClick={toggleOpen}>
-              <h1>{selectedCity.name}</h1>
-            </ModalDiv>
+            <ModalContent isOpen={isOpen} selectedCity={selectedCity} toggleClose={toggleClose} />
           </Overlay>
-        </animated.div>
+        </div>
       ))
     }
   </Transition>
@@ -43,7 +38,7 @@ const Modal = ({ isOpen, selectedCity, toggleOpen }) => (
 Modal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   selectedCity: PropTypes.object.isRequired,
-  toggleOpen: PropTypes.func.isRequired,
+  toggleClose: PropTypes.func.isRequired,
 };
 
 export default Modal;

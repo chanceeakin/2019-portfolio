@@ -2,7 +2,7 @@
 import React from 'react';
 import styled from 'react-emotion';
 import avatar from '../../images/avatar.jpg';
-import { Content, Inner, Title } from '../atoms/styled';
+import { Content, Inner, Title } from '../atoms/styled.js';
 
 export const AboutHero = styled.div`
   ${tw('flex flex-col lg:flex-row items-center mt-8')};
@@ -27,15 +27,20 @@ const About = () => (
       <AboutHero>
         <Avatar src={avatar} alt="John Doe" />
         <AboutSub>
-          The English language can not fully capture the depth and complexity of my thoughts. So I'm incorporating Emoji
-          into my speech to better express myself. Winky face.
+          I'm a software engineer based out of Austin, Texas. I wasn't always a software engineer. I spent the first
+          parts of my life studying classical music and opera. So much so I hold a doctorate in it! (Hook 'em Horns!)
         </AboutSub>
       </AboutHero>
       <AboutDesc>
-        You know the way you feel when you see a picture of two otters holding hands? That's how you're gonna feel every
-        day. My mother cried the day I was born because she knew she’d never be prettier than me. You should make me
-        your campaign manager. I was born for politics. I have great hair and I love lying. Captain? The kids want to
-        know where Paulie the Pigeon is. I told them he got sucked up into an airplane engine, is that all right?
+        I spend most of my time building staticly rendered react applications with special regard to complex data
+        visualization. There are a few fun things of that nature hanging out around this site. This site is also my
+        first foray into the Gatsby ecosystem, though it won't be my last!
+        <br />I also enjoy building apps in Golang and dabbling in computer vision, as well as contributing to
+        open-source when I can.
+        <br />
+        Aside from sofware and singing, I'm a sixth generation Texan who loves BBQ and woodworking. When I'm not
+        actively coding, I'm helping my folks remodel our farmhouse and perfecting how I smoke a brisket.
+        <br />I live with my awesome wife in Austin, and this site was built from a few of the things I know.
       </AboutDesc>
     </Inner>
   </Content>

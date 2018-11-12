@@ -1,7 +1,6 @@
 /* global tw */
 import styled from 'react-emotion';
 import { ParallaxLayer } from 'react-spring/dist/addons';
-import { rotate } from '../../styles/animations';
 
 export const Divider = styled(ParallaxLayer)`
   ${tw('absolute w-full h-full')};
@@ -35,17 +34,6 @@ export const BigTitle = styled.h1`
 
 export const Title = styled.h1`
   ${tw('text-4xl lg:text-4xl font-serif text-title mb-8 tracking-wide relative inline-block')};
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-  &:before {
-    content: '';
-    width: 40px;
-    height: 40px;
-    position: absolute;
-    background-size: 40px;
-    animation: ${rotate} 4s linear infinite;
-    left: -60px;
-    top: 5px;
-  }
 `;
 
 export const Subtitle = styled.p`

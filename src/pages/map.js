@@ -1,25 +1,68 @@
-// step 3: animation
+// @flow
+/* global tw */
 import React from 'react';
-import PropTypes from 'prop-types';
+import styled from 'react-emotion';
 import { GlyphDot } from '@vx/glyph';
 import { geoMercator } from 'd3-geo';
 import { Mercator } from '@vx/geo';
-import { Text } from '@vx/text';
+import { LinearGradient } from '@vx/gradient';
+import { LegendThreshold } from '@vx/legend';
+import { scaleThreshold } from '@vx/scale';
+
 import * as topojson from 'topojson-client';
 import topology from '../constants/world.json';
 import Modal from '../components/atoms/modal';
-import { Title } from '../components/atoms/styled';
 
-export default class MapComp extends React.Component {
-  static propTypes = {
-    width: PropTypes.number,
-    height: PropTypes.number,
-    scale: PropTypes.number,
-  };
+export type City = {
+  city: string,
+  state: string,
+  coordinates: number[],
+  population: number,
+}
 
+type Props = {
+  scale: number,
+}
+
+type State = {
+  cities: City[],
+  isOpen: boolean,
+  selectedCity: ?City,
+  width: number,
+  height: number,
+}
+
+const MapTitle = styled.text`
+  ${tw('text-4xl lg:text-4xl font-sans text-title fill-current text-grey-lighter mb-8 tracking-wide relative inline-block')};
+`
+
+const Legend = styled.div`
+  line-height: 0.9em;
+  color: #efefef;
+  font-size: 10px;
+  font-family: arial;
+  padding: 10px 10px;
+  float: left;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  margin: 5px 5px;
+`
+
+
+const threshold = scaleThreshold({
+  domain: [0.02, 0.04, 0.06, 0.08, 0.1],
+  range: [
+    '#f2f0f7',
+    '#dadaeb',
+    '#bcbddc',
+    '#9e9ac8',
+    '#756bb1',
+    '#54278f',
+  ],
+});
+
+export default class MapComp extends React.Component<Props, State>{
   static defaultProps = {
-    width: window.innerWidth,
-    height: window.innerHeight,
     scale: 150,
   };
 
@@ -33,13 +76,16 @@ export default class MapComp extends React.Component {
     ],
     isOpen: false,
     selectedCity: {
-      name: ' ',
+      city: ' ',
+      state: '',
       coordinates: [0, 0],
       population: 0,
     },
+    width: window.innerWidth,
+    height: window.innerHeight
   };
 
-  toggleOpen = city => {
+  toggleOpen = (city: City) => {
     this.setState({
       isOpen: true,
       selectedCity: city,
@@ -55,7 +101,8 @@ export default class MapComp extends React.Component {
         setTimeout(() => {
           this.setState({
             selectedCity: {
-              name: ' ',
+              city: ' ',
+              state: '',
               coordinates: [0, 0],
               population: 0,
             },
@@ -66,15 +113,29 @@ export default class MapComp extends React.Component {
   };
 
   projection = () => {
-    const { width, height, scale } = this.props;
+    const { scale } = this.props;
+    const {width, height} = this.state
     return geoMercator()
       .scale(scale)
       .translate([width / 2, height / 2]);
   };
 
+  componentDidMount() {
+    this.updateWindowDimensions();
+    window.addEventListener('resize', this.updateWindowDimensions);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateWindowDimensions);
+  }
+
+  updateWindowDimensions = () => {
+    this.setState({ width: window.innerWidth, height: window.innerHeight });
+  }
+
   render() {
-    const { width, height, scale } = this.props;
-    const { cities, isOpen, selectedCity } = this.state;
+    const { scale } = this.props;
+    const { cities, isOpen, selectedCity, width, height } = this.state;
 
     if (width < 10) return <div />;
     const world = topojson.feature(topology, topology.objects.countries);
@@ -85,7 +146,12 @@ export default class MapComp extends React.Component {
     return (
       <React.Fragment>
         <svg width={width} height={height}>
-          <rect height={height} width={width} fill="#8AA29E" />
+          <LinearGradient
+            from='#F1EDEE'
+            to='#8AA29E'
+            id="gradient"
+          />
+          <rect height={height} width={width} fill="url(#gradient)" />
           <React.Fragment>
             <Mercator
               data={world.features}
@@ -93,11 +159,7 @@ export default class MapComp extends React.Component {
               translate={translate}
               fill="#3D5467"
               projectionFunc={this.projection}
-              // onClick={data => event => {
-              //   alert(`Clicked: ${data.properties.name} (${data.id})`);
-              // }}
             />
-            <g className="markers">
               {cities.map(city => (
                 <GlyphDot
                   key={city.coordinates[0] * city.coordinates[1]}
@@ -113,12 +175,20 @@ export default class MapComp extends React.Component {
                   onClick={() => this.toggleOpen(city)}
                 />
               ))}
-            </g>
           </React.Fragment>
-          <Text x={width / 2} y={height * 0.9} width={width} verticalAnchor="start" textAnchor="middle">
-            Map
-          </Text>
+          <MapTitle x={width / 2} y={height * 0.9} width={width} verticalAnchor="start" textAnchor="middle">
+            Places I've been
+          </MapTitle>
         </svg>
+          <Legend>
+            <LegendThreshold
+                scale={threshold}
+              direction="column-reverse"
+              itemDirection="row-reverse"
+              labelMargin="0 20px 0 0"
+              shapeMargin="1px 0 0"
+            />
+          </Legend>
         <Modal
           isOpen={isOpen}
           toggleOpen={this.toggleOpen}

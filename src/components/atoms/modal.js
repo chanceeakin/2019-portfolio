@@ -3,7 +3,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { Transition } from 'react-spring';
 import styled from 'react-emotion';
-import ModalContent from './modalContent';
+import ModalContent from './ModalContent';
 
 const Overlay = styled.div`
   ${tw('fixed pin z-100 overflow-auto bg-smoke-darker flex')};

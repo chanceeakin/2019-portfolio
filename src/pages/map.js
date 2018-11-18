@@ -1,78 +1,92 @@
-// @flow
 /* global tw */
 import React from 'react';
 import styled from 'react-emotion';
+import PropTypes from 'prop-types';
 import { GlyphDot } from '@vx/glyph';
 import { geoMercator } from 'd3-geo';
 import { Mercator } from '@vx/geo';
 import { LinearGradient } from '@vx/gradient';
-import { LegendThreshold } from '@vx/legend';
-import { scaleThreshold } from '@vx/scale';
 
 import * as topojson from 'topojson-client';
+import Nav from '../components/Nav';
 import topology from '../constants/world.json';
-import Modal from '../components/atoms/modal';
-
-export type City = {
-  city: string,
-  state: string,
-  coordinates: number[],
-  population: number,
-}
-
-type Props = {
-  scale: number,
-}
-
-type State = {
-  cities: City[],
-  isOpen: boolean,
-  selectedCity: ?City,
-  width: number,
-  height: number,
-}
+import Modal from '../components/atoms/Modal';
+import MapLegend from '../components/atoms/MapLegend';
+import { colors } from '../../tailwind';
 
 const MapTitle = styled.text`
-  ${tw('text-4xl lg:text-4xl font-sans text-title fill-current text-grey-lighter mb-8 tracking-wide relative inline-block')};
-`
+  ${tw(
+    'text-4xl lg:text-4xl font-sans text-title fill-current text-grey-lighter mb-8 tracking-wide relative inline-block'
+  )};
+`;
 
-const Legend = styled.div`
-  line-height: 0.9em;
-  color: #efefef;
-  font-size: 10px;
-  font-family: arial;
-  padding: 10px 10px;
-  float: left;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 8px;
-  margin: 5px 5px;
-`
+export default class MapComp extends React.Component {
+  static propTypes = {
+    scale: PropTypes.number,
+    location: PropTypes.object.isRequired,
+  };
 
-
-const threshold = scaleThreshold({
-  domain: [0.02, 0.04, 0.06, 0.08, 0.1],
-  range: [
-    '#f2f0f7',
-    '#dadaeb',
-    '#bcbddc',
-    '#9e9ac8',
-    '#756bb1',
-    '#54278f',
-  ],
-});
-
-export default class MapComp extends React.Component<Props, State>{
   static defaultProps = {
     scale: 150,
   };
 
   state = {
     cities: [
-      { city: 'Austin', state: 'Texas', coordinates: [-97.7431, 30.2672], population: 950715 },
-      { city: 'Aspen', state: 'Colorado', coordinates: [-106.8175, 39.1911], population: 7359 },
-      { city: 'Miami', state: 'Florida', coordinates: [-80.1918, 25.7617], population: 463347 },
-      { city: 'Spoleto', state: 'Umbria', coordinates: [12.7378, 42.7405], population: 38035 },
-      { city: 'Brevard', state: 'North Carolina', coordinates: [-82.7343, 35.2334], population: 7890 },
+      {
+        city: 'Austin',
+        state: 'TX',
+        coordinates: [-97.7431, 30.2672],
+        population: 950715,
+        blurb: 'I live here now! I also happened to have gone to school here.',
+      },
+      {
+        city: 'Aspen',
+        state: 'CO',
+        coordinates: [-106.8175, 39.1911],
+        population: 7359,
+        blurb:
+          'In 2013, I joined the Opera Theater Center at Aspen for a summer of singing and hiking. We lived like paupers in ski instructor housing, and I would do it again in a heartbeat. Mostly for the mountains, a little bit for the singing.',
+      },
+      {
+        city: 'Cincinnati',
+        state: 'OH',
+        coordinates: [-84.512, 39.1031],
+        population: 301301,
+        blurb:
+          'Grad school! The University of Cincinnati is a great school for would be opera singers, as well as people who find themselves writing software. 😏',
+      },
+      {
+        city: 'Miami',
+        state: 'FL',
+        coordinates: [-80.1918, 25.7617],
+        population: 463347,
+        blurb:
+          "Joined the ranks of Florida Grand Opera's Young Artist program for their 2014-2015 season. Sang in several mainstage productions. It was here I confirmed the fact that I'm a mountain person.",
+      },
+      {
+        city: 'Spoleto',
+        state: 'Umbria',
+        coordinates: [12.7378, 42.7405],
+        population: 38035,
+        blurb:
+          'In 2010, I had the privilege of spending a summer in this ancient Roman town. We performed a Rossini opera in a theater Rossini himself visited. They had renovated since, luckily.',
+      },
+      {
+        city: 'Brevard',
+        state: 'NC',
+        coordinates: [-82.7343, 35.2334],
+        population: 7890,
+        blurb:
+          'Spent two summers here when I went to undergrad. Loved the mountains and the rain, and loved singing in some wonderful summer stock opera. Best and worst known for my Pirate King in Pirates of Penzance.',
+      },
+      {
+        city: 'Saratoga Springs',
+        state: 'NY',
+        coordinates: [-73.7846, 43.0831],
+        population: 28027,
+        blurb:
+          'Spent a summer here in 2012 as a Young Artist at Opera Saratoga. Sang my first role in a Verdi opera: Marullo in Rigoletto.',
+      },
     ],
     isOpen: false,
     selectedCity: {
@@ -82,10 +96,19 @@ export default class MapComp extends React.Component<Props, State>{
       population: 0,
     },
     width: window.innerWidth,
-    height: window.innerHeight
+    height: window.innerHeight,
   };
 
-  toggleOpen = (city: City) => {
+  componentDidMount() {
+    this.updateWindowDimensions();
+    window.addEventListener('resize', this.updateWindowDimensions);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateWindowDimensions);
+  }
+
+  toggleOpen = city => {
     this.setState({
       isOpen: true,
       selectedCity: city,
@@ -114,27 +137,18 @@ export default class MapComp extends React.Component<Props, State>{
 
   projection = () => {
     const { scale } = this.props;
-    const {width, height} = this.state
+    const { width, height } = this.state;
     return geoMercator()
       .scale(scale)
       .translate([width / 2, height / 2]);
   };
 
-  componentDidMount() {
-    this.updateWindowDimensions();
-    window.addEventListener('resize', this.updateWindowDimensions);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.updateWindowDimensions);
-  }
-
   updateWindowDimensions = () => {
     this.setState({ width: window.innerWidth, height: window.innerHeight });
-  }
+  };
 
   render() {
-    const { scale } = this.props;
+    const { location, scale } = this.props;
     const { cities, isOpen, selectedCity, width, height } = this.state;
 
     if (width < 10) return <div />;
@@ -143,52 +157,42 @@ export default class MapComp extends React.Component<Props, State>{
 
     // #F1EDEE #3D5467 #8AA29E #686963 #DB5461
     // #c83d32 #62a1a9 	#99af5d #e6b740 #2b595a #c99868
+
     return (
       <React.Fragment>
+        <Nav location={location} />
         <svg width={width} height={height}>
-          <LinearGradient
-            from='#F1EDEE'
-            to='#8AA29E'
-            id="gradient"
-          />
+          <LinearGradient from={colors['grey-light']} to={colors['teal-darkest']} id="gradient" />
           <rect height={height} width={width} fill="url(#gradient)" />
           <React.Fragment>
             <Mercator
               data={world.features}
               scale={scale}
               translate={translate}
-              fill="#3D5467"
+              fill={colors['grey-darkest']}
               projectionFunc={this.projection}
             />
-              {cities.map(city => (
-                <GlyphDot
-                  key={city.coordinates[0] * city.coordinates[1]}
-                  cx={this.projection()(city.coordinates)[0]}
-                  cy={this.projection()(city.coordinates)[1]}
-                  r={city.population / 100000 > 5 ? city.population / 100000 : 5}
-                  fill="#DB5461"
-                  className="marker"
-                  style={{
-                    zIndex: 1000,
-                    cursor: 'pointer',
-                  }}
-                  onClick={() => this.toggleOpen(city)}
-                />
-              ))}
+            {cities.map(city => (
+              <GlyphDot
+                key={city.coordinates[0] * city.coordinates[1]}
+                cx={this.projection()(city.coordinates)[0]}
+                cy={this.projection()(city.coordinates)[1]}
+                r={city.population / 100000 > 5 ? city.population / 100000 : 5}
+                fill={colors['orange-light']}
+                className="marker"
+                style={{
+                  zIndex: 1000,
+                  cursor: 'pointer',
+                }}
+                onClick={() => this.toggleOpen(city)}
+              />
+            ))}
           </React.Fragment>
           <MapTitle x={width / 2} y={height * 0.9} width={width} verticalAnchor="start" textAnchor="middle">
             Places I've been
           </MapTitle>
         </svg>
-          <Legend>
-            <LegendThreshold
-                scale={threshold}
-              direction="column-reverse"
-              itemDirection="row-reverse"
-              labelMargin="0 20px 0 0"
-              shapeMargin="1px 0 0"
-            />
-          </Legend>
+        <MapLegend />
         <Modal
           isOpen={isOpen}
           toggleOpen={this.toggleOpen}

@@ -1,14 +1,32 @@
 /* global tw */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Spring } from 'react-spring';
+import { useSpring, animated } from 'react-spring';
 import styled from 'react-emotion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { Title } from './styled';
 
-const ModalDiv = styled.div`
+const AnimatedDiv = ({ className, children, ...props }) => (
+  <animated.div className={className} {...props}>
+    {children}
+  </animated.div>
+);
+
+AnimatedDiv.propTypes = {
+  className: PropTypes.string.isRequired,
+  children: PropTypes.any.isRequired,
+};
+
+const ModalDiv = styled(AnimatedDiv)`
   ${tw('relative p-8 bg-white w-full max-w-md m-auto flex-col flex rounded')};
+  :hover {
+    cursor: pointer;
+  }
+`;
+
+const ModalText = styled.p`
+  ${tw('text-2xl lg:text-l font-sans text-black mt-8 xxl:w-3/4')};
 `;
 
 const ExitButton = styled.span`
@@ -18,29 +36,31 @@ const ExitButton = styled.span`
   }
 `;
 
-const ModalContent = ({ toggleClose, selectedCity }) => (
-  <Spring
-    from={{
-      transform: 'scale(0.2)',
-    }}
-    to={{
-      transform: 'scale(1)',
-    }}
-  >
-    {props => (
-      <ModalDiv style={props}>
-        <ExitButton onClick={toggleClose}>
-          <FontAwesomeIcon icon={faTimes} />
-        </ExitButton>
-        <Title>{selectedCity.city}</Title>
-      </ModalDiv>
-    )}
-  </Spring>
-);
+const calc = (x, y) => [-(y - window.innerHeight / 2) / 50, (x - window.innerWidth / 2) / 50, 1.1];
+const trans = (x, y) => `perspective(600px) rotateX(${x}deg) rotateY(${y}deg)`;
+
+const ModalContent = React.memo(({ toggleClose, selectedCity }) => {
+  const [props, set] = useSpring({ xy: [0, 0], config: { mass: 5, tension: 350, friction: 40 } });
+  return (
+    <ModalDiv
+      onMouseMove={({ clientX: x, clientY: y }) => set({ xy: calc(x, y) })}
+      onMouseLeave={() => set({ xy: [0, 0] })}
+      onClick={toggleClose}
+      style={{ transform: props.xy.interpolate(trans) }}
+    >
+      <ExitButton onClick={toggleClose}>
+        <FontAwesomeIcon icon={faTimes} />
+      </ExitButton>
+      <Title>{selectedCity.city}</Title>
+      <ModalText>{selectedCity.blurb}</ModalText>
+    </ModalDiv>
+  );
+});
 
 ModalContent.propTypes = {
   selectedCity: PropTypes.object.isRequired,
   toggleClose: PropTypes.func.isRequired,
+  xy: PropTypes.any.isRequired,
 };
 
 export default ModalContent;

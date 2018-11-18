@@ -9,11 +9,11 @@ const Projects = () => (
       <Title>Projects</Title>
       <ProjectsWrapper>
         <ProjectCard
-          title="Freiheit"
-          link="#"
+          title="Place's I've been"
+          link="/map"
           bg={`linear-gradient(to right, ${colors['blue-darkest']} 0%, ${colors['grey-dark']} 100%)`}
         >
-          This is a sample project I wrote.
+          Here are some of the things I've seen and done, rendered with the help of @vx, d3, and react-spring.
         </ProjectCard>
         <ProjectCard
           title="Harry Potter"

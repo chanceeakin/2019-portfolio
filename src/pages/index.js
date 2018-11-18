@@ -5,7 +5,6 @@ import 'typeface-open-sans';
 
 import SEO from '../components/SEO';
 import '../styles/global';
-import Nav from '../components/Nav';
 import Home from '../components/organisms/Home';
 import Projects from '../components/organisms/Projects';
 import About from '../components/organisms/About';
@@ -20,10 +19,9 @@ class Index extends React.Component {
     return (
       <React.Fragment>
         <SEO />
-        <Nav scroll={this.scroll} />
         {/* eslint-disable-next-line */}
         <Parallax pages={4} ref={ref => (this.parallaxRef = ref)}>
-          <Home />
+          <Home scroll={this.scroll} />
           <Projects />
           <About />
           <Contact />

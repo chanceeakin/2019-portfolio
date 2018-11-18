@@ -8,6 +8,7 @@ import { Mercator } from '@vx/geo';
 import { LinearGradient } from '@vx/gradient';
 
 import * as topojson from 'topojson-client';
+import SEO from '../components/SEO';
 import Nav from '../components/Nav';
 import topology from '../constants/world.json';
 import Modal from '../components/atoms/Modal';
@@ -160,6 +161,7 @@ export default class MapComp extends React.Component {
 
     return (
       <React.Fragment>
+        <SEO />
         <Nav location={location} />
         <svg width={width} height={height}>
           <LinearGradient from={colors['grey-light']} to={colors['teal-darkest']} id="gradient" />

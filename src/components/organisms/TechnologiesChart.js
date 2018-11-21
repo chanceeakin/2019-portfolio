@@ -5,19 +5,28 @@ import { hierarchy } from 'd3-hierarchy';
 import { arc as d3arc } from 'd3-shape';
 import { scaleLinear, scaleSqrt, scaleOrdinal } from 'd3-scale';
 import { interpolate as d3interpolate } from 'd3-interpolate';
+import { LinearGradient } from '@vx/gradient';
 import { Spring, animated } from 'react-spring';
-import Partition from '../components/Partition';
-import data from '../constants/data';
+import Partition from '../Partition';
+import data from '../../constants/technologies';
+import { colors } from '../../../tailwind';
 
 const width = 600;
 
 const height = 600;
-const color = scaleOrdinal().range(['#FE938C', '#E6B89C', '#EAD2AC', '#9CAFB7', '#4281A4']);
+const color = scaleOrdinal().range([
+  colors['teal-darker'],
+  colors['teal-dark'],
+  colors.teal,
+  colors['teal-light'],
+  colors['teal-lighter'],
+]);
 
 export default class Example extends React.Component {
   root = hierarchy(data).sum(d => d.size);
 
   static propTypes = {
+    setActiveNode: PropTypes.func.isRequired,
     margin: PropTypes.object,
   };
 
@@ -33,14 +42,20 @@ export default class Example extends React.Component {
 
   constructor() {
     super();
-    this.state = { xDomain: [0, 1], xRange: [0, 2 * Math.PI], yDomain: [0, 1], yRange: [0, width / 2] };
+    this.state = {
+      xDomain: [0, 1],
+      xRange: [0, 2 * Math.PI],
+      yDomain: [0, 1],
+      yRange: [0, width / 2],
+    };
     const { xDomain, xRange, yDomain, yRange } = this.state;
     this.xScale.domain(xDomain).range(xRange);
     this.yScale.domain(yDomain).range(yRange);
   }
 
   handleClick = d => {
-    this.setState({ xDomain: [d.x0, d.x1], yDomain: [d.y0, 1], yRange: [d.y0 ? 20 : 0, width / 2] });
+    this.props.setActiveNode(d);
+    this.setState({ xDomain: [d.x0, d.x1], yDomain: [d.y0, 1], yRange: [d.y0 ? 20 : 0, width / 2], currentNode: d });
   };
 
   handleUpdate = (t, xd, yd, yr) => {
@@ -49,7 +64,7 @@ export default class Example extends React.Component {
   };
 
   render() {
-    const { margin = { top: 0, left: 0, right: 0, bottom: 0 } } = this.props;
+    const { margin = { top: 0, left: 0, right: 0, bottom: 0 }, setActiveNode } = this.props;
     const { xDomain, yDomain, yRange } = this.state;
     if (width < 10) return null;
     const xd = d3interpolate(this.xScale.domain(), xDomain);
@@ -57,6 +72,8 @@ export default class Example extends React.Component {
     const yr = d3interpolate(this.yScale.range(), yRange);
     return (
       <svg width={width} height={height}>
+        <LinearGradient from={colors['orange-lighter']} to={colors['teal-light']} id="gradient" />
+        <rect height={height} width={width} rx={20} fill="url(#gradient)" />
         <Partition top={margin.top} left={margin.left} root={this.root}>
           <Spring native reset from={{ t: 0 }} to={{ t: 1 }} onFrame={({ t }) => this.handleUpdate(t, xd, yd, yr)}>
             {({ t }) => (
@@ -66,7 +83,7 @@ export default class Example extends React.Component {
                     className="path"
                     d={t.interpolate(() => this.arc(node))}
                     stroke="rgba(0,0,0,0.5)"
-                    strokeWidth="1"
+                    strokeWidth="0.2"
                     fill={color((node.children ? node.data : node.parent.data).name)}
                     fillRule="evenodd"
                     onClick={() => this.handleClick(node)}

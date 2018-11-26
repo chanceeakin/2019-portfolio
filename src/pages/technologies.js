@@ -2,13 +2,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'react-emotion';
+import { ParentSize } from '@vx/responsive';
 import TechnologiesChart from '../components/organisms/TechnologiesChart';
 import CurrentNode from '../components/molecules/TechCurrentNode';
 import SEO from '../components/SEO';
 import Nav from '../components/Nav';
 
 const Container = styled.div`
-  ${tw('flex flex-row flex-wrap justify-around pt-16 pl-8 pr-8')};
+  ${tw('flex flex-col content-center justify-center pt-16 pl-8 pr-8')};
 `;
 
 export default class Example extends React.Component {

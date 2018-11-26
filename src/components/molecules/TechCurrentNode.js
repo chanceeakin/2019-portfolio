@@ -6,7 +6,7 @@ import { StaticQuery, graphql } from 'gatsby';
 import Img from 'gatsby-image';
 
 const Container = styled.div`
-  ${tw('bg-teal rounded-lg p-8')};
+  ${tw('w-1/3 bg-teal self-center rounded-lg p-8 m-8')};
 `;
 
 // ugh why won't gatsby support dynamic graphql like...the rest of the internet? I need to bribe somebody. Or send 'em a PR. Bribe it is.

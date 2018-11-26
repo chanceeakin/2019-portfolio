@@ -1,3 +1,4 @@
+const path = require(`path`);
 const config = require('./config/website');
 
 const pathPrefix = config.pathPrefix === '/' ? '' : config.pathPrefix;
@@ -39,6 +40,13 @@ module.exports = {
             type: 'image/png',
           },
         ],
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `images`,
+        path: path.join(__dirname, `src`, `images`),
       },
     },
     /* Must be placed at the end */

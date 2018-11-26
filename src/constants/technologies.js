@@ -1,87 +1,98 @@
 export default {
-  name: 'tech',
+  name: 'Technologies',
+  image: 'tech',
+  blurb: '',
   children: [
     {
       name: 'Databases',
+      image: 'databases',
       children: [
         {
           name: 'MySQL',
+          image: 'mysql',
           size: 4500,
         },
         {
           name: 'PostGRES',
+          image: 'postgres',
           size: 1500,
         },
         {
           name: 'MongoDB',
+          image: 'mongoDB',
           size: 3500,
         },
         {
           name: 'Cassandra/Scylla',
+          image: 'scylla',
           size: 6500,
         },
       ],
     },
     {
       name: 'Languages',
+      image: 'languages',
       children: [
         {
           name: 'Javascript',
+          image: 'js',
           children: [
-            { name: 'D3', size: 3000 },
-            { name: 'React', size: 10000 },
-            { name: 'Redux', size: 6714 },
-            { name: '@vx', size: 743 },
-            { name: 'Webpack', size: 5400 },
-            { name: 'Babel', size: 3200 },
-            { name: 'React Spring', size: 4200 },
-            { name: 'Graphql', size: 7200 },
-            { name: 'Node.js', size: 12000 },
+            { name: 'D3', image: 'd3', size: 3000 },
+            { name: 'React', image: 'react', size: 10000 },
+            { name: 'Redux', image: 'redux', size: 6714 },
+            { name: '@vx', image: 'vx', size: 743 },
+            { name: 'Webpack', image: 'webpack', size: 5400 },
+            { name: 'Babel', image: 'babel', size: 3200 },
+            { name: 'React Spring', image: 'react', size: 4200 },
+            { name: 'Graphql', image: 'graphql', size: 7200 },
+            { name: 'Node.js', image: 'node', size: 12000 },
           ],
         },
         {
           name: 'Golang',
-          children: [{ name: 'GoCV', size: 3534 }, { name: 'Gorilla Mux', size: 3416 }],
+          image: 'golang',
+          children: [
+            { name: 'GoCV', image: 'gocv', size: 3534 },
+            { name: 'Gorilla Mux', image: 'gorilla', size: 3416 },
+          ],
         },
         {
           name: 'Python',
+          image: 'python',
           children: [
             {
               name: 'Computer Vision',
-              children: [
-                {
-                  name: 'Facial Recognition',
-                  size: 850,
-                },
-                {
-                  name: 'Image manipulation',
-                  size: 500,
-                },
-              ],
+              image: 'opencv',
+              size: 1350,
             },
             {
               name: 'NumPy',
+              image: 'numpy',
               size: 450,
             },
             {
               name: 'Flask',
+              image: 'flask',
               size: 450,
             },
           ],
         },
         {
           name: 'C/C++',
+          image: 'c',
           size: 1150,
         },
       ],
     },
     {
       name: 'Devops',
+      image: 'devops',
       children: [
-        { name: 'Docker', size: 7010 },
-        { name: 'Kubernetes', size: 1842 },
+        { name: 'Docker', image: 'docker', size: 7010 },
+        { name: 'Kubernetes', image: 'kubernetes', size: 1842 },
         {
           name: 'Cloud Platforms',
+          image: 'cloud',
           children: [{ name: 'AWS', size: 750 }, { name: 'GCP', size: 4200 }, { name: 'Digital Ocean', size: 7800 }],
         },
         { name: 'Linux', size: 6500 },
@@ -89,6 +100,7 @@ export default {
     },
     {
       name: 'AI/ML',
+      image: 'ai',
       size: 1200,
     },
   ],

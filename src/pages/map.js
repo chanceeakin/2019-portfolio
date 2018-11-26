@@ -96,8 +96,8 @@ export default class MapComp extends React.Component {
       coordinates: [0, 0],
       population: 0,
     },
-    width: window.innerWidth,
-    height: window.innerHeight,
+    width: 600,
+    height: 400,
   };
 
   componentDidMount() {

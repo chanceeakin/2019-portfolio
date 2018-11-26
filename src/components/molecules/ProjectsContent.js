@@ -16,11 +16,11 @@ const Projects = () => (
           Here are some of the things I've seen and done, rendered with the help of @vx, d3, and react-spring.
         </ProjectCard>
         <ProjectCard
-          title="Harry Potter"
-          link="#"
+          title="Technologies"
+          link="/technologies"
           bg={`linear-gradient(to right, ${colors['blue-darkest']} 0%, ${colors['grey-dark']} 100%)`}
         >
-          This is also a sample project I wrote.
+          I find myself using this tech from time to time.
         </ProjectCard>
       </ProjectsWrapper>
     </Inner>

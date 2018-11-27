@@ -1,7 +1,6 @@
 import React from 'react';
 import { Parallax } from 'react-spring/dist/addons';
 import 'typeface-cantata-one';
-import GHCorner from 'react-gh-corner';
 import 'typeface-open-sans';
 
 import SEO from '../components/molecules/Seo';
@@ -20,13 +19,6 @@ class Index extends React.PureComponent {
     return (
       <React.Fragment>
         <SEO />
-        <GHCorner
-          href="https://github.com/chanceeakin"
-          positon="top-right"
-          bgColor="black"
-          size={80}
-          ariaLabel="Github"
-        />
         {/* eslint-disable-next-line */}
         <Parallax pages={4} ref={ref => (this.parallaxRef = ref)}>
           <Home scroll={this.scroll} />

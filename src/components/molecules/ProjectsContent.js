@@ -11,14 +11,14 @@ const Projects = () => (
         <ProjectCard
           title="Place's I've been"
           link="/map"
-          bg={`linear-gradient(to right, ${colors['blue-darkest']} 0%, ${colors['grey-dark']} 100%)`}
+          bg={`linear-gradient(to right, ${colors['orange-darker']} 0%, ${colors['orange-light']} 100%)`}
         >
           Here are some of the things I've seen and done, rendered with the help of @vx, d3, and react-spring.
         </ProjectCard>
         <ProjectCard
           title="Technologies"
           link="/technologies"
-          bg={`linear-gradient(to right, ${colors['blue-darkest']} 0%, ${colors['grey-dark']} 100%)`}
+          bg={`linear-gradient(to right, ${colors['orange-darker']} 0%, ${colors['orange-light']} 100%)`}
         >
           I find myself using this tech from time to time.
         </ProjectCard>

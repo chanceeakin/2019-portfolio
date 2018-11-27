@@ -2,7 +2,7 @@
 import React from 'react';
 import styled from 'react-emotion';
 import avatar from '../../images/avatar.jpg';
-import { Content, Inner, Title } from '../atoms/styled.js';
+import { Content, Inner, Title } from '../atoms/Styled';
 
 export const AboutHero = styled.div`
   ${tw('flex flex-col lg:flex-row items-center mt-8')};
@@ -20,7 +20,7 @@ export const AboutDesc = styled.p`
   ${tw('text-grey-darkest text-lg md:text-xl lg:text-2xl font-sans pt-6 md:pt-12 text-justify')};
 `;
 
-const About = () => (
+const About = React.memo(() => (
   <Content speed={0.4} offset={2}>
     <Inner>
       <Title>About</Title>
@@ -44,6 +44,6 @@ const About = () => (
       </AboutDesc>
     </Inner>
   </Content>
-);
+));
 
 export default About;

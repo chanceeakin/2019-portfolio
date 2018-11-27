@@ -9,7 +9,7 @@ const Overlay = styled.div`
   ${tw('fixed pin z-100 overflow-auto bg-smoke-darker flex')};
 `;
 
-const Modal = ({ isOpen, selectedCity, toggleClose }) => (
+const Modal = React.memo(({ isOpen, selectedCity, toggleClose }) => (
   <Transition
     items={isOpen}
     from={{
@@ -33,7 +33,7 @@ const Modal = ({ isOpen, selectedCity, toggleClose }) => (
       ))
     }
   </Transition>
-);
+));
 
 Modal.propTypes = {
   isOpen: PropTypes.bool.isRequired,

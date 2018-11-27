@@ -2,9 +2,9 @@ import React from 'react';
 
 import { hidden } from '../../styles/utils';
 import { colors } from '../../../tailwind';
-import SVG from '../SVG';
+import SVG from '../atoms/Svg';
 import { UpDown, UpDownWide } from '../../styles/animations';
-import { Divider } from '../atoms/styled';
+import { Divider } from '../atoms/Styled';
 
 const Projects = () => (
   <Divider speed={1.1} offset={1.3} factor={1}>

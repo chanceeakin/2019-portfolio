@@ -1,16 +1,17 @@
 import React from 'react';
 import { Parallax } from 'react-spring/dist/addons';
 import 'typeface-cantata-one';
+import GHCorner from 'react-gh-corner';
 import 'typeface-open-sans';
 
-import SEO from '../components/SEO';
+import SEO from '../components/molecules/Seo';
 import '../styles/global';
 import Home from '../components/organisms/Home';
 import Projects from '../components/organisms/Projects';
 import About from '../components/organisms/About';
 import Contact from '../components/organisms/Contact';
 
-class Index extends React.Component {
+class Index extends React.PureComponent {
   scroll = page => {
     this.parallaxRef.scrollTo(page);
   };
@@ -19,6 +20,13 @@ class Index extends React.Component {
     return (
       <React.Fragment>
         <SEO />
+        <GHCorner
+          href="https://github.com/chanceeakin"
+          positon="top-right"
+          bgColor="black"
+          size={80}
+          ariaLabel="Github"
+        />
         {/* eslint-disable-next-line */}
         <Parallax pages={4} ref={ref => (this.parallaxRef = ref)}>
           <Home scroll={this.scroll} />

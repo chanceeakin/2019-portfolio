@@ -7,9 +7,9 @@ import Img from 'gatsby-image';
 import { colors } from '../../../tailwind';
 
 const Container = styled.div`
-  ${tw('w-1/3 self-center rounded-lg p-8 m-8')};
+  ${tw('w-1/3 sm:w-full md:w-1/2 lg:w-1/3 self-center rounded-lg p-8 m-8')};
   background: linear-gradient(to top, ${colors['teal-light']} 0%, ${colors['orange-lighter']} 100%);
-  height: 600px;
+  min-height: 610px;
 `;
 
 const Title = styled.h1`

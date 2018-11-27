@@ -29,7 +29,7 @@ const Span = styled.span`
   ${tw('text-center text-sm')};
 `;
 
-const MapLegend = () => (
+const MapLegend = React.memo(() => (
   <Legend>
     <Title>Instructions</Title>
     <Span>
@@ -41,6 +41,6 @@ const MapLegend = () => (
     </Span>
     <Text>It'll show you where I've been.</Text>
   </Legend>
-);
+));
 
 export default MapLegend;

@@ -1,10 +1,10 @@
 import React from 'react';
 import { hidden } from '../../styles/utils';
 import { colors } from '../../../tailwind';
-import SVG from '../SVG';
+import SVG from '../atoms/Svg';
 
 import { UpDown, UpDownWide } from '../../styles/animations';
-import { Divider } from '../atoms/styled';
+import { Divider } from '../atoms/Styled';
 
 const Contact = () => (
   <Divider speed={0.1} offset={3}>

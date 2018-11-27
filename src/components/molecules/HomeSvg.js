@@ -4,8 +4,8 @@ import { hidden } from '../../styles/utils';
 import { colors } from '../../../tailwind';
 
 import { UpDown, UpDownWide, opaqueAnimation } from '../../styles/animations';
-import SVG from '../SVG';
-import { Divider } from '../atoms/styled';
+import SVG from '../atoms/Svg';
+import { Divider } from '../atoms/Styled';
 
 const Home = () => (
   <Divider speed={1} offset={0} bg="#f3f7f9">

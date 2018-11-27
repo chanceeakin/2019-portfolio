@@ -11,7 +11,7 @@ import { LinearGradient } from '@vx/gradient';
 import { Spring, animated } from 'react-spring';
 import { Popper } from 'react-popper';
 
-import Partition from '../Partition';
+import Partition from '../atoms/Partition';
 import data from '../../constants/technologies';
 import { colors } from '../../../tailwind';
 
@@ -27,7 +27,7 @@ const color = scaleOrdinal().range([
   colors['teal-lightest'],
 ]);
 
-export default class Example extends React.Component {
+export default class Example extends React.PureComponent {
   root = hierarchy(data).sum(d => d.size);
 
   static propTypes = {
@@ -104,10 +104,10 @@ export default class Example extends React.Component {
     const yr = d3interpolate(this.yScale.range(), yRange);
     return (
       <React.Fragment>
-        <svg width={width} height={height} style={{ cursor: 'pointer', alignSelf: 'center' }}>
+        <svg width={width + 10} height={height + 10} style={{ cursor: 'pointer', alignSelf: 'center' }}>
           <LinearGradient from={colors['orange-lighter']} to={colors['teal-light']} id="gradient" />
-          <rect height={height} width={width} rx=".5rem" fill="url(#gradient)" />
-          <Partition top={margin.top} left={margin.left} root={this.root}>
+          <rect height={height + 10} width={width + 10} rx=".5rem" fill="url(#gradient)" />
+          <Partition top={margin.top + 5} left={margin.left + 5} root={this.root}>
             <Spring native reset from={{ t: 0 }} to={{ t: 1 }} onFrame={({ t }) => this.handleUpdate(t, xd, yd, yr)}>
               {({ t }) => (
                 <Group top={height / 2} left={width / 2}>

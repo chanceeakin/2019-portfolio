@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'react-emotion';
-import { Content, Hero, BigTitle } from '../atoms/styled';
+import { Content, Hero, BigTitle } from '../atoms/Styled';
 
 const Subtitle = styled.p`
   ${tw('text-2xl lg:text-4xl font-sans text-black mt-8 xxl:w-3/4')};

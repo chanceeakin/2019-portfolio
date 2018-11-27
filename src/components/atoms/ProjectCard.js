@@ -2,11 +2,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'react-emotion';
+import { colors } from '../../../tailwind';
 
 const Wrapper = styled.a`
   width: 100%;
   ${tw('shadow-lg relative no-underline rounded-lg px-8 py-8 md:py-24 text-white')};
-  background: ${props => props.bg};
+  background: linear-gradient(to right, ${colors['orange-darker']} 0%, ${colors['orange-light']} 100%);
   transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   &:hover {
     transform: translateY(-5px);
@@ -23,18 +24,17 @@ const Title = styled.div`
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 `;
 
-const ProjectCard = ({ title, link, children, bg }) => (
-  <Wrapper href={link} rel="noopener noreferrer" bg={bg}>
+const ProjectCard = ({ title, link, children }) => (
+  <Wrapper href={link} rel="noopener noreferrer">
     <Text>{children}</Text>
     <Title>{title}</Title>
   </Wrapper>
 );
 
-export default ProjectCard;
-
 ProjectCard.propTypes = {
   title: PropTypes.string.isRequired,
   link: PropTypes.string.isRequired,
   children: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
-  bg: PropTypes.string.isRequired,
 };
+
+export default ProjectCard;

@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import HomeSvg from '../molecules/HomeSvg';
 import HomeContent from '../molecules/HomeContent';
 
-const Home = ({ scroll }) => (
+const Home = React.memo(({ scroll }) => (
   <React.Fragment>
     <HomeSvg />
     <HomeContent scroll={scroll} />
   </React.Fragment>
-);
+));
 
 Home.propTypes = {
   scroll: PropTypes.func.isRequired,

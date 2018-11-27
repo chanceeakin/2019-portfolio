@@ -4,14 +4,14 @@ import PropTypes from 'prop-types';
 import styled from 'react-emotion';
 import TechnologiesChart from '../components/organisms/TechnologiesChart';
 import CurrentNode from '../components/molecules/TechCurrentNode';
-import SEO from '../components/SEO';
-import Nav from '../components/Nav';
+import SEO from '../components/molecules/Seo';
+import Nav from '../components/molecules/Nav';
 
 const Container = styled.div`
   ${tw('flex flex-row md:flex-col lg:flex-row content-center justify-center pt-16 pl-8 pr-8')};
 `;
 
-export default class Example extends React.Component {
+export default class Example extends React.PureComponent {
   static propTypes = {
     location: PropTypes.object.isRequired,
     data: PropTypes.object.isRequired,

@@ -1,7 +1,7 @@
 /* global tw */
 import React from 'react';
 import styled from 'react-emotion';
-import { Content, Inner } from '../atoms/styled';
+import { Content, Inner } from '../atoms/Styled';
 
 export const Title = styled.h1`
   ${tw('text-4xl lg:text-4xl font-serif text-black mb-8 tracking-wide relative inline-block')};

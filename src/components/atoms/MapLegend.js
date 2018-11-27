@@ -2,6 +2,7 @@
 import React from 'react';
 import styled from 'react-emotion';
 import { GlyphDot } from '@vx/glyph';
+import { colors } from '../../../tailwind';
 
 const Legend = styled.div`
   ${tw('visible absolute pin-b pin-l padding-8 xs:invisible sm:invisible md:invisible lg:visible')};
@@ -34,7 +35,7 @@ const MapLegend = () => (
     <Span>
       Click on a
       <svg height={16} width={16}>
-        <GlyphDot cx={10} cy={11} r={4} fill="#DB5461" />
+        <GlyphDot cx={10} cy={11} r={4} fill={colors['orange-light']} />
       </svg>
       .
     </Span>

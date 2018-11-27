@@ -103,7 +103,7 @@ export default class Example extends React.Component {
     const yd = d3interpolate(this.yScale.domain(), yDomain);
     const yr = d3interpolate(this.yScale.range(), yRange);
     return (
-      <>
+      <React.Fragment>
         <svg width={width} height={height} style={{ cursor: 'pointer', alignSelf: 'center' }}>
           <LinearGradient from={colors['orange-lighter']} to={colors['teal-light']} id="gradient" />
           <rect height={height} width={width} rx=".5rem" fill="url(#gradient)" />
@@ -146,7 +146,7 @@ export default class Example extends React.Component {
             </div>
           )}
         </Popper>
-      </>
+      </React.Fragment>
     );
   }
 }

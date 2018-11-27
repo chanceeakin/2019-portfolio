@@ -104,7 +104,7 @@ export default class Example extends React.Component {
     const yr = d3interpolate(this.yScale.range(), yRange);
     return (
       <React.Fragment>
-        <svg width={width} height={height} style={{ cursor: 'pointer' }}>
+        <svg width={width} height={height} style={{ cursor: 'pointer', alignSelf: 'center' }}>
           <LinearGradient from={colors['orange-lighter']} to={colors['teal-light']} id="gradient" />
           <rect height={height} width={width} rx=".5rem" fill="url(#gradient)" />
           <Partition top={margin.top} left={margin.left} root={this.root}>
@@ -139,16 +139,6 @@ export default class Example extends React.Component {
                 <div
                   ref={arrowProps.ref}
                   style={{
-                    '&:before': {
-                      position: 'absolute',
-                      zIndex: -1,
-                      content: '',
-                      right: `calc(50% - 10px)`,
-                      top: `-8px`,
-                      borderStyle: 'solid',
-                      borderWidth: '0 10px 10px 10px',
-                      borderColor: `transparent transparent #BFBFBF transparent`,
-                    },
                     ...arrowProps.style,
                   }}
                 />

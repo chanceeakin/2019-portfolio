@@ -8,7 +8,7 @@ import SEO from '../components/SEO';
 import Nav from '../components/Nav';
 
 const Container = styled.div`
-  ${tw('flex flex-row flex-wrap justify-around pt-16 pl-8 pr-8')};
+  ${tw('flex flex-row md:flex-col lg:flex-row content-center justify-center pt-16 pl-8 pr-8')};
 `;
 
 export default class Example extends React.Component {

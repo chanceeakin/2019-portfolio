@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { waveAnimation } from '../../styles/animations';
-import { Divider, WaveWrapper, InnerWave } from '../atoms/styled';
+import { Divider, WaveWrapper, InnerWave } from '../atoms/Styled';
 
 const Contact = () => (
   <Divider fill="#23262b" speed={0.2} offset={3}>

@@ -1,22 +1,12 @@
 /* global tw */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useSpring, animated } from 'react-spring';
+import { useSpring } from 'react-spring';
 import styled from 'react-emotion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
-import { Title } from './styled';
-
-const AnimatedDiv = ({ className, children, ...props }) => (
-  <animated.div className={className} {...props}>
-    {children}
-  </animated.div>
-);
-
-AnimatedDiv.propTypes = {
-  className: PropTypes.string.isRequired,
-  children: PropTypes.any.isRequired,
-};
+import { Title } from './Styled';
+import AnimatedDiv from './AnimatedDiv';
 
 const ModalDiv = styled(AnimatedDiv)`
   ${tw('relative p-8 bg-white w-full max-w-md m-auto flex-col flex rounded')};

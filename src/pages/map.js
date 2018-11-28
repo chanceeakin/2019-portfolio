@@ -24,15 +24,11 @@ const MapTitle = styled.text`
 
 export default class MapComp extends React.PureComponent {
   static propTypes = {
-    scale: PropTypes.number,
     location: PropTypes.object.isRequired,
   };
 
-  static defaultProps = {
-    scale: 150,
-  };
-
   state = {
+    scale: 150,
     cities: data,
     isOpen: false,
     selectedCity: {
@@ -82,8 +78,7 @@ export default class MapComp extends React.PureComponent {
   };
 
   projection = () => {
-    const { scale } = this.props;
-    const { width, height } = this.state;
+    const { width, height, scale } = this.state;
     return geoMercator()
       .scale(scale)
       .translate([width / 2, height / 2]);
@@ -94,8 +89,8 @@ export default class MapComp extends React.PureComponent {
   };
 
   render() {
-    const { location, scale } = this.props;
-    const { cities, isOpen, selectedCity, width, height } = this.state;
+    const { location } = this.props;
+    const { cities, scale, isOpen, selectedCity, width, height } = this.state;
 
     if (width < 10) return <div />;
     const world = topojson.feature(topology, topology.objects.countries);

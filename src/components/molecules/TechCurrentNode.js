@@ -7,9 +7,10 @@ import Img from 'gatsby-image';
 import { colors } from '../../../tailwind';
 
 const Container = styled.div`
-  ${tw('w-1/3 sm:w-full md:w-1/2 lg:w-1/3 self-center rounded-lg p-8 m-8')};
+  ${tw('w-1/3 sm:w-full md:w-2/3 lg:w-1/3 self-center rounded-lg p-8 m-8')};
   background: linear-gradient(to top, ${colors['teal-light']} 0%, ${colors['orange-lighter']} 100%);
-  min-height: 610px;
+  height: ${props => `${props.height}px`};
+  overflow: auto;
 `;
 
 const Title = styled.h1`
@@ -26,7 +27,7 @@ const Blurb = styled.p`
 `;
 
 // ugh why won't gatsby support dynamic graphql like...the rest of the internet? I need to bribe somebody. Or send 'em a PR. Bribe it is.
-const CurrentNode = ({ currentNode }) => (
+const CurrentNode = ({ currentNode, height }) => (
   <StaticQuery
     query={graphql`
       query {
@@ -266,7 +267,7 @@ const CurrentNode = ({ currentNode }) => (
     render={data => {
       const img = currentNode.data && currentNode.data.image ? data[currentNode.data.image].childImageSharp.fluid : '';
       return (
-        <Container>
+        <Container height={height}>
           {currentNode.data ? (
             <React.Fragment>
               <Title>{currentNode.data.name}</Title>
@@ -282,6 +283,7 @@ const CurrentNode = ({ currentNode }) => (
 
 CurrentNode.propTypes = {
   currentNode: PropTypes.object.isRequired,
+  height: PropTypes.number.isRequired,
 };
 
 export default CurrentNode;

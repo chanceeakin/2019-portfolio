@@ -27,7 +27,7 @@ const color = scaleOrdinal().range([
   colors['teal-lightest'],
 ]);
 
-export default class Example extends React.PureComponent {
+export default class Example extends React.Component {
   root = hierarchy(data).sum(d => d.size);
 
   static propTypes = {
@@ -64,7 +64,7 @@ export default class Example extends React.PureComponent {
       xDomain: [0, 1],
       xRange: [0, 2 * Math.PI],
       yDomain: [0, 1],
-      yRange: [0, 600 / 2],
+      yRange: [0, 610 / 2],
       hoveredNode: {},
       anchorEl: {},
     };
@@ -104,10 +104,10 @@ export default class Example extends React.PureComponent {
     const yr = d3interpolate(this.yScale.range(), yRange);
     return (
       <React.Fragment>
-        <svg width={width + 10} height={height + 10} style={{ cursor: 'pointer', alignSelf: 'center' }}>
+        <svg width={width} height={height} style={{ cursor: 'pointer', alignSelf: 'center' }}>
           <LinearGradient from={colors['orange-lighter']} to={colors['teal-light']} id="gradient" />
-          <rect height={height + 10} width={width + 10} rx=".5rem" fill="url(#gradient)" />
-          <Partition top={margin.top + 5} left={margin.left + 5} root={this.root}>
+          <rect height={height} width={width} rx=".5rem" fill="url(#gradient)" />
+          <Partition top={margin.top} left={margin.left} root={this.root}>
             <Spring native reset from={{ t: 0 }} to={{ t: 1 }} onFrame={({ t }) => this.handleUpdate(t, xd, yd, yr)}>
               {({ t }) => (
                 <Group top={height / 2} left={width / 2}>

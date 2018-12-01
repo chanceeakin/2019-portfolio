@@ -3,7 +3,7 @@ import { Content, Title, Inner, ProjectsWrapper } from '../atoms/Styled';
 import ProjectCard from '../atoms/ProjectCard';
 
 const Projects = () => (
-  <Content speed={1.4} offset={1.2} factor={1}>
+  <Content speed={1.4} offset={1} factor={1}>
     <Inner>
       <Title>Projects</Title>
       <ProjectsWrapper>

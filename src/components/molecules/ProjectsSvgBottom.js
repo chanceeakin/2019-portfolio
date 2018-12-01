@@ -7,7 +7,7 @@ import { UpDown, UpDownWide } from '../../styles/animations';
 import { Divider } from '../atoms/Styled';
 
 const Projects = () => (
-  <Divider speed={1.1} offset={1.3} factor={1}>
+  <Divider speed={1.1} offset={1} factor={1}>
     <UpDown>
       <SVG icon="hexa" width={6} stroke={colors.grey} left="85%" top="75%" />
       <SVG icon="hexa" width={8} stroke={colors['blue-dark']} left="70%" top="20%" />

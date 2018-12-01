@@ -18,7 +18,7 @@ import data from '../constants/map';
 
 const MapTitle = styled.text`
   ${tw(
-    'text-4xl lg:text-4xl font-sans text-title fill-current text-grey-lighter mb-8 tracking-wide relative inline-block'
+    'text-4xl lg:text-4xl font-serif text-title fill-current text-grey-lighter mb-8 tracking-wide relative inline-block'
   )};
 `;
 

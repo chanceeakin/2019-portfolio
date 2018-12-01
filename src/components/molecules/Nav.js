@@ -17,7 +17,7 @@ const NonIndexWrapper = styled.nav`
 `;
 
 const Title = styled.div`
-  ${tw('flex items-center flex-no-shrink text-black mr-6 no-underline')};
+  ${tw('flex items-center flex-no-shrink font-serif text-black mr-6 no-underline')};
   cursor: pointer;
 `;
 

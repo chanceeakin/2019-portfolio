@@ -13,7 +13,7 @@ export const Avatar = styled.img`
 `;
 
 export const AboutSub = styled.span`
-  ${tw('text-grey-darkest pt-12 lg:pt-0 lg:pl-12 text-2xl lg:text-3xl xl:text-4xl')};
+  ${tw('text-grey-darkest pt-12 lg:pt-0 lg:pl-12 text-2xl font-serif lg:text-3xl xl:text-4xl')};
 `;
 
 export const AboutDesc = styled.p`
@@ -35,12 +35,17 @@ const About = React.memo(() => (
         I spend most of my time building staticly rendered react applications with special regard to complex data
         visualization. There are a few fun things of that nature hanging out around this site. This site is also my
         first foray into the Gatsby ecosystem, though it won't be my last!
-        <br />I also enjoy building apps in Golang and dabbling in computer vision, as well as contributing to
-        open-source when I can.
-        <br />
+      </AboutDesc>
+      <AboutDesc>
+        I also enjoy building apps in Golang and dabbling in computer vision, as well as contributing to open-source
+        when I can.
+      </AboutDesc>
+      <AboutDesc>
         Aside from sofware and singing, I'm a sixth generation Texan who loves BBQ and woodworking. When I'm not
         actively coding, I'm helping my folks remodel our farmhouse and perfecting how I smoke a brisket.
-        <br />I live with my awesome wife in Austin, and this site was built from a few of the things I know.
+      </AboutDesc>
+      <AboutDesc>
+        I live with my awesome wife in Austin, and this site was built from a few of the things I know.
       </AboutDesc>
     </Inner>
   </Content>

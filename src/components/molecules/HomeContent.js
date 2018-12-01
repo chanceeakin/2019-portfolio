@@ -18,7 +18,7 @@ const Home = ({ scroll }) => (
       <BigTitle>
         Hey, <br /> I'm Chance Eakin.
       </BigTitle>
-      <Subtitle onClick={() => scroll(1.15)}>I build things.</Subtitle>
+      <Subtitle onClick={() => scroll(1)}>I build things.</Subtitle>
     </Hero>
   </Content>
 );

@@ -11179,6 +11179,11 @@ react-error-overlay@^3.0.0:
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-3.0.0.tgz#c2bc8f4d91f1375b3dad6d75265d51cd5eeaf655"
   integrity sha512-XzgvowFrwDo6TWcpJ/WTiarb9UI6lhA4PMzS7n1joK3sHfBBBOQHUc0U4u57D6DWO9vHv6lVSWx2Q/Ymfyv4hw==
 
+react-github-corner@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/react-github-corner/-/react-github-corner-2.3.0.tgz#73ab17324b670c9cd955567b09663d385cfb05ef"
+  integrity sha512-yVh8wtAfVA5CQYn8ygyxtsuCMoyiSEBVnzQJ3ynyWxZ1BzT2MHop4baZn/PnUnU9Yh8mwhLS5Y1RVxM5zNotGw==
+
 react-helmet@^5.2.0:
   version "5.2.0"
   resolved "https://registry.yarnpkg.com/react-helmet/-/react-helmet-5.2.0.tgz#a81811df21313a6d55c5f058c4aeba5d6f3d97a7"
@@ -13189,15 +13194,15 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-typeface-cantata-one@^0.0.54:
+typeface-karla@^0.0.54:
   version "0.0.54"
-  resolved "https://registry.yarnpkg.com/typeface-cantata-one/-/typeface-cantata-one-0.0.54.tgz#5442843224cca606a76d0fdc97a6dffb13c11a70"
-  integrity sha512-ut76khrgeCWiHHIedKrpWYmU0N1D31jcDbw50CfqZQ7W01KuLivBOe3I2C2+XmJLhDCVHQBa9q9KIBpasBAnKw==
+  resolved "https://registry.yarnpkg.com/typeface-karla/-/typeface-karla-0.0.54.tgz#f59d09b329a378db2161a3ecd6e6a0054699b579"
+  integrity sha512-8LI3n3KGAF94hvnozruF5oEu00YnVgkTjFDESs47S6Z6WeTEvyxLnoR9Dlv7IW48rqZekLMgYhfgkfxkKpYAEQ==
 
-typeface-open-sans@^0.0.54:
+typeface-rubik@^0.0.54:
   version "0.0.54"
-  resolved "https://registry.yarnpkg.com/typeface-open-sans/-/typeface-open-sans-0.0.54.tgz#20f5b5ea5c7f95d89dc1f8b2d2b1457680129cee"
-  integrity sha512-w6wOd6EicZdZKf0jSU/K3EzEi3zFgvWQSN7NOpRIQI5KeMWmC5Pg/lqtBVJHB0pRChYRmLdhf4h8ROur0A3JZQ==
+  resolved "https://registry.yarnpkg.com/typeface-rubik/-/typeface-rubik-0.0.54.tgz#301d18b2efe57495beb5ef096632212b23f4faaf"
+  integrity sha512-cxhqFNp5zGUUIr2i8wDcTT+8/aFnECa/qVwEe6012ouNL2Itu629Y7aI28MazL1HvkNGrUeZ7WsvkOrdu1o9qQ==
 
 ua-parser-js@^0.7.18:
   version "0.7.18"

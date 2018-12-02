@@ -55,11 +55,11 @@ module.exports = {
         trackingId: 'UA-86915404-2',
         // Puts tracking script in the head instead of the body
         head: false,
+        anonymize: true,
         // Setting this parameter is also optional
         respectDNT: true,
         sampleRate: 5,
         siteSpeedSampleRate: 10,
-        cookieDomain: 'www.chanceeakin.io',
       },
     },
     /* Must be placed at the end */

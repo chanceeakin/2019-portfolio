@@ -203,6 +203,7 @@ module.exports = {
 
   fonts: {
     sans: [
+      'Rubik',
       'Roboto',
       '-apple-system',
       'BlinkMacSystemFont',
@@ -216,6 +217,7 @@ module.exports = {
       'sans-serif',
     ],
     serif: [
+      'Karla',
       'Roboto Slab',
       'Lucidabright',
       'Lucida Bright',

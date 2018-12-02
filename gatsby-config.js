@@ -59,7 +59,7 @@ module.exports = {
         respectDNT: true,
         sampleRate: 5,
         siteSpeedSampleRate: 10,
-        cookieDomain: 'chanceeakin.io',
+        cookieDomain: 'www.chanceeakin.io',
       },
     },
     /* Must be placed at the end */

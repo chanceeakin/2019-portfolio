@@ -20,6 +20,7 @@
     "@vx/shape": "^0.0.179",
     "@vx/text": "^0.0.179",
     "antd": "^3.10.3",
+    "autoprefixer": "^9.3.1",
     "babel-plugin-tailwind": "^0.1.10",
     "classnames": "2.2.6",
     "d3-geo": "^1.11.1",

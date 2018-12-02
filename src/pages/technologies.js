@@ -54,7 +54,6 @@ export default class Example extends React.PureComponent {
 
   render() {
     const { currentNode, dimensions } = this.state;
-    console.log(dimensions);
     const { location, data } = this.props;
     const fullWH = dimensions.width > 900 ? dimensions.width * 0.5 : dimensions.width - 64;
     return (

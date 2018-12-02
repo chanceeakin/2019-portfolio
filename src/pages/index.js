@@ -1,7 +1,5 @@
 import React from 'react';
 import { Parallax } from 'react-spring/dist/addons';
-import 'typeface-karla';
-import 'typeface-rubik';
 import GithubCorner from 'react-github-corner';
 
 import SEO from '../components/molecules/Seo';

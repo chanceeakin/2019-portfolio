@@ -203,11 +203,10 @@ module.exports = {
 
   fonts: {
     sans: [
-      'Karla',
+      'Roboto',
       '-apple-system',
       'BlinkMacSystemFont',
       'Segoe UI',
-      'Roboto',
       'Oxygen',
       'Ubuntu',
       'Cantarell',
@@ -217,10 +216,9 @@ module.exports = {
       'sans-serif',
     ],
     serif: [
-      'Rubik',
-      'Constantia',
-      'Lucida Bright',
+      'Roboto Slab',
       'Lucidabright',
+      'Lucida Bright',
       'Lucida Serif',
       'Lucida',
       'DejaVu Serif',

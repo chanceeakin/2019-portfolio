@@ -8,7 +8,7 @@ import SVG from '../atoms/Svg';
 import { Divider } from '../atoms/Styled';
 
 const Home = () => (
-  <Divider speed={1} offset={0} bg="#f3f7f9">
+  <Divider speed={1} offset={0} factor={2.2} bg="#f3f7f9">
     <UpDown>
       <SVG
         icon="hexa"
@@ -19,7 +19,7 @@ const Home = () => (
         top="90%"
       />
       <SVG icon="hexa" width={6} stroke={colors['grey-darkest']} left="4%" top="20%" />
-      <SVG icon="hexa" width={8} stroke={colors['grey-darkest']} left="95%" top="90%" />
+      <SVG icon="hexa" width={8} stroke={colors['grey-darkest']} left="15%" top="90%" />
       <SVG icon="hexa" className={hidden} width={24} stroke={colors['grey-darker']} left="40%" top="80%" />
       <SVG icon="hexa" width={8} stroke={colors['grey-darker']} left="25%" top="5%" />
       <SVG icon="hexa" width={64} stroke={colors['blue-darker']} left="95%" top="5%" />
@@ -35,7 +35,7 @@ const Home = () => (
       <SVG icon="hexa" width={12} stroke={colors['grey-darkest']} left="50%" top="60%" />
     </UpDownWide>
     <SVG icon="hexa" className={hidden} width={24} stroke={colors['grey-darker']} left="5%" top="70%" />
-    <SVG icon="hexa" className={hidden} width={64} stroke={colors['blue-darker']} left="5%" top="90%" />
+    <SVG icon="hexa" className={hidden} width={64} stroke={colors['blue-darker']} left="35%" top="84%" />
     <SVG icon="hexa" width={6} stroke={colors['grey-darkest']} left="10%" top="10%" />
     <SVG icon="hexa" width={12} stroke={colors['grey-darkest']} left="40%" top="30%" />
     <SVG icon="hexa" width={16} stroke={colors['grey-darker']} left="10%" top="50%" />

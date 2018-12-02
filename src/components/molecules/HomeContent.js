@@ -13,7 +13,7 @@ const Subtitle = styled.p`
 `;
 
 const Home = ({ scroll }) => (
-  <Content speed={1} offset={0}>
+  <Content speed={1} offset={0} factor={1}>
     <Hero>
       <BigTitle>
         Hey, <br /> I'm Chance Eakin.

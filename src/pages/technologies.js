@@ -5,10 +5,15 @@ import styled from 'react-emotion';
 import TechnologiesChart from '../components/organisms/TechnologiesChart';
 import CurrentNode from '../components/molecules/TechCurrentNode';
 import SEO from '../components/molecules/Seo';
+import { Title } from '../components/atoms/Styled';
 import Nav from '../components/molecules/Nav';
 
+const TitleContainer = styled.div`
+  ${tw('flex flex-row content-center justify-center pt-16 pl-8 pr-8')};
+`;
+
 const Container = styled.div`
-  ${tw('flex flex-row sm:flex-col md:flex-col lg:flex-row content-center justify-center pt-16 pl-8 pr-8')};
+  ${tw('flex sm:flex-col md:flex-col lg:flex-row content-center justify-center pt-8 pl-8 pr-8')};
 `;
 
 export default class Example extends React.PureComponent {
@@ -49,18 +54,19 @@ export default class Example extends React.PureComponent {
 
   render() {
     const { currentNode, dimensions } = this.state;
+    console.log(dimensions);
     const { location, data } = this.props;
+    const fullWH = dimensions.width > 900 ? dimensions.width * 0.5 : dimensions.width - 64;
     return (
       <React.Fragment>
         <SEO />
         <Nav location={location} />
+        <TitleContainer>
+          <Title>Technology Chart</Title>
+        </TitleContainer>
         <Container id="tech-container">
-          <TechnologiesChart
-            width={dimensions.width * 0.5}
-            height={dimensions.width * 0.5}
-            setActiveNode={this.handleClick}
-          />
-          <CurrentNode currentNode={currentNode} height={dimensions.width * 0.5} data={data} />
+          <TechnologiesChart width={fullWH} height={fullWH} setActiveNode={this.handleClick} />
+          <CurrentNode currentNode={currentNode} widthAndHeight={dimensions.width * 0.5} data={data} />
         </Container>
       </React.Fragment>
     );

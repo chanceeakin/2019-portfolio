@@ -21,31 +21,30 @@ export const AboutDesc = styled.p`
 `;
 
 const About = React.memo(() => (
-  <Content speed={0.4} offset={2}>
+  <Content speed={0.4} offset={2.2}>
     <Inner>
       <Title>About</Title>
       <AboutHero>
         <Avatar src={avatar} alt="John Doe" />
-        <AboutSub>
-          I'm a software engineer based out of Austin, Texas. I wasn't always a software engineer. I spent the first
-          parts of my life studying classical music and opera. So much so I hold a doctorate in it! (Hook 'em Horns!)
-        </AboutSub>
+        <AboutSub>I'm a software engineer based out of Austin, Texas, and I'm also an opera singer!</AboutSub>
       </AboutHero>
       <AboutDesc>
-        I spend most of my time building staticly rendered react applications with special regard to complex data
-        visualization. There are a few fun things of that nature hanging out around this site. This site is also my
-        first foray into the Gatsby ecosystem, though it won't be my last!
+        Most of my time is spent building react applications and pretty data visualizations, but my time professionally
+        singing taught me that over specialization is a sub optimal approach to life. So I learn something new as often
+        as possible.
       </AboutDesc>
       <AboutDesc>
-        I also enjoy building apps in Golang and dabbling in computer vision, as well as contributing to open-source
-        when I can.
+        In my spare time, I build things with Golang and dabble in computer vision. Also doing some open source work
+        with regard to animations and React.
       </AboutDesc>
       <AboutDesc>
-        Aside from sofware and singing, I'm a sixth generation Texan who loves BBQ and woodworking. When I'm not
-        actively coding, I'm helping my folks remodel our farmhouse and perfecting how I smoke a brisket.
+        Aside from software and singing, I'm a sixth generation Texan who loves BBQ and woodworking. When I'm not
+        actively coding, I'm helping my folks remodel our farmhouse and perfecting how I smoke a brisket...or building
+        new things out of oak or walnut.
       </AboutDesc>
       <AboutDesc>
-        I live with my awesome wife in Austin, and this site was built from a few of the things I know.
+        I live with my awesome wife in Austin, and this site was built from a few of the things I know already--and
+        several things I learned for the occasion.
       </AboutDesc>
     </Inner>
   </Content>

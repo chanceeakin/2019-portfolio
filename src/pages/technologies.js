@@ -13,7 +13,7 @@ const TitleContainer = styled.div`
 `;
 
 const Container = styled.div`
-  ${tw('flex sm:flex-col md:flex-col lg:flex-row content-center justify-center pt-8 pl-8 pr-8')};
+  ${tw('flex flex-col sm:flex-col md:flex-col lg:flex-row content-center justify-center pt-8 pl-8 pr-8')};
 `;
 
 export default class Example extends React.PureComponent {

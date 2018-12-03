@@ -7,7 +7,7 @@ import Img from 'gatsby-image';
 import { colors } from '../../../tailwind';
 
 const Container = styled.div`
-  ${tw('w-1/3 sm:w-full md:w-full lg:w-1/3 self-center rounded-lg p-8 m-8')};
+  ${tw('w-full sm:w-full md:w-full lg:w-1/3 self-center rounded-lg p-8 m-8')};
   background: linear-gradient(to top, ${colors['teal-light']} 0%, ${colors['orange-lighter']} 100%);
   height: ${props => `${props.widthAndHeight}px`};
   overflow: auto;

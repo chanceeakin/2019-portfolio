@@ -6,6 +6,7 @@ import { GlyphDot } from '@vx/glyph';
 import { geoMercator } from 'd3-geo';
 import { Mercator } from '@vx/geo';
 import { LinearGradient } from '@vx/gradient';
+import { withScreenSize } from '@vx/responsive';
 
 import * as topojson from 'topojson-client';
 import SEO from '../components/molecules/Seo';
@@ -22,9 +23,11 @@ const MapTitle = styled.text`
   )};
 `;
 
-export default class MapComp extends React.PureComponent {
+class MapComp extends React.PureComponent {
   static propTypes = {
     location: PropTypes.object.isRequired,
+    screenWidth: PropTypes.number.isRequired,
+    screenHeight: PropTypes.number.isRequired,
   };
 
   state = {
@@ -37,18 +40,7 @@ export default class MapComp extends React.PureComponent {
       coordinates: [0, 0],
       population: 0,
     },
-    width: 600,
-    height: 400,
   };
-
-  componentDidMount() {
-    this.updateWindowDimensions();
-    window.addEventListener('resize', this.updateWindowDimensions);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.updateWindowDimensions);
-  }
 
   toggleOpen = city => {
     this.setState({
@@ -78,23 +70,20 @@ export default class MapComp extends React.PureComponent {
   };
 
   projection = () => {
-    const { width, height, scale } = this.state;
+    const { scale } = this.state;
+    const { screenWidth, screenHeight } = this.props;
     return geoMercator()
       .scale(scale)
-      .translate([width / 2, height / 2]);
-  };
-
-  updateWindowDimensions = () => {
-    this.setState({ width: window.innerWidth, height: window.innerHeight });
+      .translate([screenWidth / 2, screenHeight / 2]);
   };
 
   render() {
-    const { location } = this.props;
-    const { cities, scale, isOpen, selectedCity, width, height } = this.state;
+    const { location, screenHeight, screenWidth } = this.props;
+    const { cities, scale, isOpen, selectedCity } = this.state;
 
-    if (width < 10) return <div />;
+    if (screenWidth < 10) return <div />;
     const world = topojson.feature(topology, topology.objects.countries);
-    const translate = [width / 2, height / 2];
+    const translate = [screenWidth / 2, screenHeight / 2];
 
     // #F1EDEE #3D5467 #8AA29E #686963 #DB5461
     // #c83d32 #62a1a9 	#99af5d #e6b740 #2b595a #c99868
@@ -103,9 +92,9 @@ export default class MapComp extends React.PureComponent {
       <React.Fragment>
         <SEO />
         <Nav location={location} />
-        <svg width={width} height={height}>
+        <svg width={screenWidth} height={screenHeight}>
           <LinearGradient from={colors['grey-light']} to={colors['teal-darkest']} id="gradient" />
-          <rect height={height} width={width} fill="url(#gradient)" />
+          <rect height={screenHeight} width={screenWidth} fill="url(#gradient)" />
           <React.Fragment>
             <Mercator
               data={world.features}
@@ -130,7 +119,13 @@ export default class MapComp extends React.PureComponent {
               />
             ))}
           </React.Fragment>
-          <MapTitle x={width / 2} y={height * 0.9} width={width} verticalAnchor="start" textAnchor="middle">
+          <MapTitle
+            x={screenWidth / 2}
+            y={screenHeight * 0.9}
+            width={screenWidth}
+            verticalAnchor="start"
+            textAnchor="middle"
+          >
             Places I've been
           </MapTitle>
         </svg>
@@ -145,3 +140,5 @@ export default class MapComp extends React.PureComponent {
     );
   }
 }
+
+export default withScreenSize(MapComp);

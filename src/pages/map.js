@@ -23,6 +23,14 @@ const MapTitle = styled.text`
   )};
 `;
 
+const NoMapContainer = styled.div`
+  ${tw('flex items-center justify-between')};
+`;
+
+const NoMapTitle = styled.h1`
+  ${tw('text-xl font-serif text-center text-title fill-current text-black mb-8')};
+`;
+
 class MapComp extends React.PureComponent {
   static propTypes = {
     location: PropTypes.object.isRequired,
@@ -81,7 +89,12 @@ class MapComp extends React.PureComponent {
     const { location, screenHeight, screenWidth } = this.props;
     const { cities, scale, isOpen, selectedCity } = this.state;
 
-    if (screenWidth < 10) return <div />;
+    if (screenWidth < 600)
+      return (
+        <NoMapContainer>
+          <NoMapTitle>This content best viewed on larger screens.</NoMapTitle>
+        </NoMapContainer>
+      );
     const world = topojson.feature(topology, topology.objects.countries);
     const translate = [screenWidth / 2, screenHeight / 2];
 

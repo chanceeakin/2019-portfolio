@@ -63,11 +63,6 @@ module.exports = {
         trackingId: 'UA-86915404-2',
         // Puts tracking script in the head instead of the body
         head: true,
-        anonymize: false,
-        // Setting this parameter is also optional
-        respectDNT: true,
-        sampleRate: 5,
-        siteSpeedSampleRate: 10,
       },
     },
     /* Must be placed at the end */
